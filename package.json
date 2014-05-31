@@ -1,0 +1,29 @@
+{
+  "name": "chatersock",
+  "version": "0.0.1",
+  "description": "a sample node.js chat app using sockjs",
+  "private": true,
+  "scripts": {
+    "start": "node ./chatersock.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "toobusy-js": "0.3.x",
+    "express": "4.1.x",
+    "body-parser": "1.0.x",
+    "serve-favicon": "2.0.x",
+    "method-override": "1.0.x",
+    "morgan": "1.0.x",
+    "errorhandler": "1.0.x",
+    "response-time": "1.0.x",
+    "async": "0.9.x",
+    "sockjs": "0.3.x",
+    "rbytes": "1.0.x",
+    "jade": "1.3.x"
+  },
+  "author": "Itai Koren (@itkoren)",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10.x"
+  }
+}

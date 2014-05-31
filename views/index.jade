@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    script(type="text/javascript", src="/javascripts/chatersockClient.js")
+    div(class="navbar navbar-inverse navbar-fixed-top", role="navigation")
+        div.container
+            div.navbar.navbar-fixed-top.navbar-inverse
+                div.navbar-inner
+                    div.pull-right
+                        a(href="https://github.com/itkoren/chatersock", class="navbar-brand") chatersock
+
+    div(ng-app="ChatersockApp", ng-controller="ChatersockCtrl")
+        div.jumbotron
+            div.page-header
+                h1= title
+
+            div.row
+                div.col-md-3
+                    ul.nav.nav-list.well
+                        li.nav-header Local Users
+                        li(ng-repeat="user in roster", ng-bind="user")
+                div.col-md-9
+                    table.table.table-striped.table-bordered
+                        thead
+                            tr
+                                th.col-md-2 Name
+                                th.col-md-7 Text
+                        tbody
+                            tr(ng-repeat="msg in messages")
+                                td(class="col-md-2", ng-bind="msg.name")
+                                td(class="col-md-7", ng-bind="msg.text")
+                    div.row.controls
+                        form(ng-submit="send()")
+                            div.col-md-2
+                                input(type="text", class="form-control", ng-model="name", placeholder="Your Name", autofocus)
+                            div.input-append.col-md-7
+                                input(type="text", class="col-md-5 form-control", ng-model="text", placeholder="Message")
+                                input(type="submit", class="col-md-2 btn btn-primary", value="Send", ng-disabled="!text")
