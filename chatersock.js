@@ -111,6 +111,18 @@ wsserver.on("connection", function(socket) {
             // Update roster
             updateRoster();
           }
+          else if (chater && chater.clear && 0 < chater.clear.length) {
+            // Clear massages
+            messages.length = 0;
+
+            socket.chater = chater.clear;
+
+            // Update roster
+            updateRoster();
+
+            // Clear in clients
+            broadcast(chater);
+          }
         }
         catch (err) {
           var msg = { name: socket.chater, text: text };

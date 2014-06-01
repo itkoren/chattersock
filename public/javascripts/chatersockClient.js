@@ -16,7 +16,11 @@ app.controller("ChatersockCtrl", function($scope, $sce, $http) {
 
             if (data.text) {
                 $scope.messages.push(data);
-            } else {
+            }
+            else if (data.clear) {
+                $scope.messages.length = 0;
+            }
+            else {
                 $scope.roster = data;
             }
           }
@@ -39,5 +43,9 @@ app.controller("ChatersockCtrl", function($scope, $sce, $http) {
 
     $scope.setName = function setName() {
       sock.send(JSON.stringify({ name: $scope.name }));
+    };
+
+    $scope.clear = function clear() {
+      sock.send(JSON.stringify({ clear: $scope.name }));
     };
 });
