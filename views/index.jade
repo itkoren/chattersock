@@ -1,7 +1,6 @@
 extends layout
 
 block content
-    script(type="text/javascript", src="/javascripts/chatersockClient.js")
     div(class="navbar navbar-inverse navbar-fixed-top", role="navigation")
         div.container
             div.navbar.navbar-fixed-top.navbar-inverse
@@ -39,3 +38,4 @@ block content
                             div.input-append.col-md-7
                                 input(type="text", class="col-md-5 form-control", ng-model="text", placeholder="Message")
                                 input(type="submit", class="col-md-2 btn btn-primary", value="Send", ng-disabled="!text")
+    script(type="text/javascript", src="/javascripts/chatersockClient.js")
