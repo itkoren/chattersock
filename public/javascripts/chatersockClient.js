@@ -15,6 +15,7 @@ app.controller("ChatersockCtrl", function($scope, $sce, $http) {
             var data = JSON.parse(e.data);
 
             if (data.text) {
+                data.text = urlify(data.text);
                 $scope.messages.push(data);
             }
             else if (data.clear) {
@@ -48,4 +49,16 @@ app.controller("ChatersockCtrl", function($scope, $sce, $http) {
     $scope.clear = function clear() {
       sock.send(JSON.stringify({ clear: $scope.name }));
     };
+
+    function urlify(text) {
+        if (text && text.replace) {
+            var urlRegex = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlRegex, function(url) {
+                return "<a href=\"" + url + "\">" + url + "</a>";
+            });
+        }
+        else {
+          return text;
+        }
+    }
 });
