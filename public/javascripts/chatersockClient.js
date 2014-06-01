@@ -15,7 +15,7 @@ app.controller("ChatersockCtrl", function($scope, $sce, $http) {
             var data = JSON.parse(e.data);
 
             if (data.text) {
-                data.text = urlify(data.text);
+                //data.text = urlify(data.text);
                 $scope.messages.push(data);
             }
             else if (data.clear) {
