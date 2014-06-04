@@ -54,7 +54,7 @@ dmn.run(function() {
         }
     });
 
-    app.use(favicon(__dirname + "/public/chatersock.ico"));
+    app.use(favicon(__dirname + "/public/chattersock.ico"));
     app.use(bodyParser());
     app.use(methodOverride());
 
@@ -104,28 +104,28 @@ wsserver.on("connection", function(socket) {
         console.log("MESSAGE:", text);
 
         try {
-          var chater = JSON.parse(text);
-          if (chater && chater.name && 0 < chater.name.length) {
-            socket.chater = chater.name;
+          var chatter = JSON.parse(text);
+          if (chatter && chatter.name && 0 < chatter.name.length) {
+            socket.chatter = chatter.name;
 
             // Update roster
             updateRoster();
           }
-          else if (chater && chater.clear && 0 < chater.clear.length) {
+          else if (chatter && chatter.clear && 0 < chatter.clear.length) {
             // Clear massages
             messages.length = 0;
 
-            socket.chater = chater.clear;
+            socket.chatter = chatter.clear;
 
             // Update roster
             updateRoster();
 
             // Clear in clients
-            broadcast(chater);
+            broadcast(chatter);
           }
         }
         catch (err) {
-          var msg = { name: socket.chater, text: text };
+          var msg = { name: socket.chatter, text: text };
           broadcast(msg);
           messages.push(msg);
         }
@@ -143,7 +143,7 @@ function updateRoster() {
   async.map(
     sockets,
     function (socket, callback) {
-      callback(null, socket.chater);
+      callback(null, socket.chatter);
     },
     function (err, names) {
       broadcast(names);
@@ -158,7 +158,7 @@ function broadcast(data) {
 }
 
 var server = http.createServer(app);
-wsserver.installHandlers(server, { prefix: "/chatersock" });
+wsserver.installHandlers(server, { prefix: "/chattersock" });
 server.listen(app.get("port"), app.get("ip"), function(){
     var addr = server.address();
     console.log("Express Server listening at", addr.address + ":" + addr.port);

@@ -1,7 +1,7 @@
-var app = angular.module("ChatersockApp", []);
+var app = angular.module("ChattersockApp", []);
 
-app.controller("ChatersockCtrl", function($scope, $sce, $http) {
-    var sock = new SockJS("/chatersock");
+app.controller("ChattersockCtrl", function($scope, $sce, $http) {
+    var sock = new SockJS("/chattersock");
 
     $scope.messages = [];
     $scope.roster = [];
